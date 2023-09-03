@@ -30,7 +30,7 @@ public class Main {
         //Constructor -> A constructor is nothing but a special function, that runs when you create an object, and it allocates some variables.
 
         Student Kunal = new Student();//Both prints the value of the Student() method inside the class.
-        Student Kunal1 = new Student();
+        Student Kunal1 = new Student();//--^
 
         Student Aasya = new Student();
 
@@ -50,6 +50,22 @@ public class Main {
         Aasya.Greeting(); //It won't greet with the value 'Rahul Saw' that is being declared in the constructor, instead 'Aasya' that is being passes to the
         //changeName argument, and then Greeting fn prints the greeting msg along with the this.name, means it has the name of the particular object value,
         //not that is being declared in the Student() fn.
+
+
+        Student random1 = new Student(Rahul);
+        System.out.println(random1.name); //It will return the name of the Rahul object 'cause it is passing the Rahul object as an argument to the
+        // Student(Student other) constructor.
+
+        Student random2 = new Student();
+        System.out.println(random2.name);
+
+
+
+        //Refrencing one object to another
+        Student one = new Student();
+        Student two = one;
+        one.name = "Let them sink in";
+        System.out.println(two.name); //prints - Let them sink in
     }
 }
 
@@ -59,6 +75,7 @@ class Student{
     int rollno;
     String name;
     float marks;
+
 
     //It will going to greet with the msg along with the object's instance variable 'name' value.
     void Greeting(){
@@ -76,11 +93,22 @@ class Student{
     }
 
 
+
+
     Student(int roll, String name, float marks){
         this.rollno = roll;
         this.name = name;
         this.marks = marks;
     }
+
+    //Passing constructor as an argument
+    Student(Student other){
+        this.rollno = other.rollno;
+        this.name = other.name;
+        this.marks = other.marks;
+    }
+
+
 
 
 }
