@@ -68,6 +68,7 @@ public class LinearSearch {
         if (index == arr.length){
             return list;
         }
+        //this will contain answer for that function call only.
         if (arr[index] == target){
             list.add(index);
         }

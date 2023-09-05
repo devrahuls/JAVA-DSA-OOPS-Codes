@@ -8,6 +8,12 @@ public class CallingCunstructorInsideConstructor {
         System.out.println(random.roll);
         System.out.println(random.name);
         System.out.println(random.marks);
+
+        int x = 8;
+        int f = (int)Math.floor(Math.sqrt(x));
+        System.out.println(f);
+
+
     }
 }
 

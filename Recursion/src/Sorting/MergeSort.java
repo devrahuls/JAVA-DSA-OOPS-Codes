@@ -6,7 +6,7 @@ public class MergeSort {
     public static void main(String[] args) {
 
         int[] arr = {5, 4, 3, 2, 1};
-        arr = sort(arr);
+        sortInPlace(arr, 0, arr.length);
         System.out.println(Arrays.toString(arr));
     }
 
@@ -59,4 +59,63 @@ public class MergeSort {
         return mix;
 
     }
+
+
+
+
+    //In the above method we are copying the original array and then changing it.
+    //Now we are going to change the original array by passing range as start, mid, and end of the array or subarray.
+
+
+    static void sortInPlace(int[] arr, int s, int e){
+        if (e - s == 1){
+            return;
+        }
+
+        int mid = (s + e)/2;
+
+        sortInPlace(arr, 0, mid);
+        sortInPlace(arr, mid, e);
+
+        mergeInPlace(arr, s , mid, e);
+    }
+
+    static void mergeInPlace(int[] arr, int s, int m , int e){
+        int[] mix = new int[e - s];
+
+        int i = s; //for traversing left side of the array
+        int j = m; //for traversing right side of the array
+        int k = 0; //for traversing the merged array.
+
+        while(i < m && j < e){
+            if (arr[i] < arr[j]){
+                mix[k] = arr[i];
+                i++;
+            }else {
+                mix[k] = arr[j];
+                j++;
+            }
+            k++;
+        }
+
+        //It might be possible that one of the array isn't completely merged to the second one. Happens when the no. of elements in the array is odd.
+        while (i < m){
+            mix[k] = arr[i];
+            i++;
+            k++;
+        }
+
+        while (j < e){
+            mix[k] = arr[j];
+            j++;
+            k++;
+        }
+
+        //Copying the remaining elements.
+        for (int l = 0; l < mix.length; l++) {
+            arr[s + l] = mix[l];
+        }
+
+    }
+
 }
